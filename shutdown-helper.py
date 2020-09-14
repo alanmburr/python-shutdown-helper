@@ -36,9 +36,9 @@ class Window(Frame):
         quitButton = Button(self, text="Cancel", command=self.client_exit)
         shutDown = Button(self, text="Shut Down", command=self.turnoff)
         reStart = Button(self, text="Restart", command=self.rebootcomputer)
-        logOff = Button(self, text="Logoff", command=self.logoffuser)
-        label = Label(self, textvariable=lable_choose, compound=RIGHT)
         lockScreen = Button(self, text="Lock", command=self.lockscreen)
+        label = Label(self, textvariable=lable_choose, compound=RIGHT)
+        logOff = Button(self, text="Logoff", command=self.logoffuser)
         lablethesecond = Label(self, text="You can Shut down, Restart, or Log off.", compound=RIGHT)
 
         # placing the button on my window
@@ -53,7 +53,25 @@ class Window(Frame):
         quitButton.pack(side=LEFT, anchor=W, fill=X, expand=YES)#place(x=148, y=42)
 
 
-       
+    def linuxpm(self):
+        _apt = os.path.isfile('/usr/bin/apt')
+        _rpm = os.path.isfile('/usr/bin/yum')
+        _dnf = os.path.isfile('/usr/bin/dnf')
+        _arx = os.path.isfile('/usr/bin/pacman')
+        if _apt == True:
+            userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
+            os.system("echo "+userpasswd+" | sudo -S apt -y install gnome-screensaver && gnome-screensaver-command -l && gnome-screensaver-command -a")
+        elif _rpm == True and _dnf == False:
+            userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
+            os.system("echo "+userpasswd+" | sudo -S yum -y install gnome-screensaver && gnome-screensaver-command -l && gnome-screensaver-command -a")
+        elif _dnf == True and _rpm == True:
+            userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
+            os.system("echo "+userpasswd+" | yes | sudo -S dnf install gnome-screensaver && gnome-screensaver-command -l && gnome-screensaver-command -a")
+        elif _arx == True:
+            userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
+            os.system("echo "+userpasswd+" | yes | sudo -S pacman -Sy gnome-screensaver && gnome-screensaver-command -l && gnome-screensaver-command -a")
+        elif _dnf == False and _rpm == False and _apt == False and _arx == False:
+            messagebox.showerror("Error", "Could not install package because your os is not Debian-based or rpm/dnf based.")
     def turnoff(self):
         if _plt == "linux" or _plt == "linux2":
             os.system("shutdown now")
@@ -61,9 +79,9 @@ class Window(Frame):
             userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
             os.system("echo "+userpasswd+" | sudo -S shutdown -h")
         elif _plt == "win32":
-            os.system("shutdown.exe /s")
+            os.system("powershell stop-computer")
         elif _plt == "win64":
-            os.system("shutdown.exe /s")
+            os.system("powershell stop-computer")
     def rebootcomputer(self):
         if _plt == "linux" or _plt == "linux2":
             os.system("shutdown -r now")
@@ -71,9 +89,9 @@ class Window(Frame):
             userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
             os.system("echo "+userpasswd+"| sudo -S shutdown -r now")
         elif _plt == "win32":
-            os.system("shutdown.exe /r")
+            os.system("powershell restart-computer")
         elif _plt == "win64":
-            os.system("shutdown.exe /r")
+            os.system("powershell restart-computer")
     def logoffuser(self):
         if _plt == "linux" or _plt == "linux2":
             userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
@@ -81,13 +99,12 @@ class Window(Frame):
         elif _plt == "darwin":
             messagebox.showerror("Error", "Could not log off user.")
         elif _plt == "win32":
-            os.system("shutdown /l")
+            os.system("powershell logoff")
         elif _plt == "win64":
-            os.system("shutdown /l")
+            os.system("powershell logoff")
     def lockscreen(self):
         if _plt == "linux" or _plt == "linux2":
-            userpasswd = tksd.askstring("Password", "[sudo] password for "+os.getlogin()+":", show='*')
-            os.system("echo "+userpasswd+" | sudo -S apt install gnome-screensaver && gnome-screensaver-command -l && gnome-screensaver-command -a")
+            linuxpm(self)
         elif _plt == "darwin":
             os.system("/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend")
         elif _plt == "win32":
@@ -102,7 +119,7 @@ class Window(Frame):
 # you can later have windows within windows.
 root = Tk()
 
-root.geometry("400x80")
+#root.geometry("400x80")
 
 root.resizable(width=False, height=False)
 
