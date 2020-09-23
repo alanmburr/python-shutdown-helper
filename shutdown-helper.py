@@ -123,6 +123,19 @@ root = Tk()
 
 root.resizable(width=False, height=False)
 
+if _plt == "linux" or _plt == "linux2":
+    root.iconphoto(False, tkinter.PhotoImage(file='/usr/share/icons/Humanity/apps/48/system-shut-down.svg'))
+    root.wm_iconphoto(False, tkinter.PhotoImage(file='/usr/share/icons/Humanity/apps/48/system-shut-down.svg'))
+elif _plt == "darwin":
+    root.iconbitmap('shutdown-ico.ico')
+    root.wm_iconbitmap('shutdown-ico.ico')
+elif _plt == "win32":
+    root.iconbitmap('shutdown-ico.ico')
+    root.wm_iconbitmap('shutdown-ico.ico')
+elif _plt == "win64":
+    root.iconbitmap('shutdown-ico.ico')
+    root.wm_iconbitmap('shutdown-ico.ico')
+
 #creation of an instance
 app = Window(root)
 
