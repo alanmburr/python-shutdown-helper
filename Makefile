@@ -6,10 +6,9 @@ all:
 
 install:
 	@mkdir -p $(DESTDIR)$(PREFIX)/bin
-	@cp -p python-shutdown-helper.py $(DESTDIR)$(PREFIX)/bin/python-shutdownhelper
-  @touch $(DESTDIR)$(PREFIX)/bin/shutdownhelper
-  @sed -i 2a"# Run ShutdownHelper in python3 correctly\npython3 -u /usr/bin/python-shutdownhelper\n" $(DESTDIR)$(PREFIX)/bin/shutdownhelper
+	@cp -p gtk.py $(DESTDIR)$(PREFIX)/bin/shutdownhelper
 	@chmod 755 $(DESTDIR)$(PREFIX)/bin/shutdownhelper
+	@cp -p shutdown-helper.1 $(MANDIR)/man1/shutdown-helper.1
 
 uninstall:
 	@rm -rf $(DESTDIR)$(PREFIX)/bin/python-shutdownhelper
