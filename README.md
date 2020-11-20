@@ -32,7 +32,7 @@ Uninstalling ALL components:
 $ make remove -C $HOME/Downloads/shutdown-helper
 ```
 ## Windows
-Requires: [git](https://git-scm.com/downloads/win), [python3](https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe), tkinter: ```pip3 install tk```
+Requires: [git](https://git-scm.com/download/win), [python3](https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe), tkinter: ```pip3 install tk```
 ```bash
 #!%systemtroot%\Windows\System32\cmd.exe OR %systemroot%\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 > git clone https://github.com/wackyblackie/python-shutdown-helper %USERPROFILE%\Downloads\shutdown-helper
