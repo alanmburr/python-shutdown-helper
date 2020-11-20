@@ -3,13 +3,13 @@
 - [Windows](#windows)
 ## Ubuntu
 Requires: curl, make
-### Downloading
+### Download Installer
 ```bash
 #!/bin/bash
 $ mkdir $HOME/Downloads/shutdown-helper
 $ curl https://raw.githubusercontent.com/wackyblackie/python-shutdown-helper/master/Makefile -O $HOME/Downloads/shutdown-helper/Makefile
 ```
-### Downloading and Installing
+### Run Installer
 ```bash
 $ make download install -C $HOME/Downloads/shutdown-helper
 ```
