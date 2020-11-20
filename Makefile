@@ -3,6 +3,16 @@ MANDIR ?= $(PREFIX)/share/man
 
 all:
 	@echo Run \'sudo make install\' to install ShutdownHelper.
+	
+download:
+	@mkdir -p $HOME/Downloads/shutdown-helper
+	@cd $HOME/Downloads/shutdown-helper
+	@curl https://raw.githubusercontent.com/wackyblackie/python-shutdown-helper/master/LICENSE -O LICENSE
+	@curl https://raw.githubusercontent.com/wackyblackie/python-shutdown-helper/master/gtk.py -O gtk.py
+	@curl https://raw.githubusercontent.com/wackyblackie/python-shutdown-helper/master/shutdown-helper.1.gz -O shutdown-helper.1.gz
+	@curl https://raw.githubusercontent.com/wackyblackie/python-shutdown-helper/master/shutdown-helper.8.gz -O shutdown-helper.8.gz
+	@curl https://raw.githubusercontent.com/wackyblackie/python-shutdown-helper/master/tk.py -O tk.py
+	@echo "Finished downloading files. Run 'sudo make install' to install them."
 
 install:
 	@mkdir -p $(DESTDIR)$(PREFIX)/bin
