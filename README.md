@@ -2,7 +2,8 @@
 - [Ubuntu](#ubuntu)
 - [Windows](#windows)
 ## Ubuntu
-Requires: [curl](https://curl.se/download.html), [make](#installing-tk)
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/shutdown-helper)<br>
+Requires: [curl](https://curl.se/download.html), [make](https://gnu.org/software/make)
 ### Download Installer
 ```bash
 #!/bin/bash
