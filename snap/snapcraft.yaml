@@ -1,0 +1,20 @@
+name: shutdown-helper
+version: '1.0'
+summary: Shutdown Helper
+description: |
+  Shutdown-Helper is a tool to help you with power operations for your computer
+confinement: classic
+base: core20
+
+parts:
+  shutdown-helper:
+    plugin: python
+    python-version: python3
+    source: https://github.com/wackyblackie/python-shutdown-helper.git
+    stage-packages:
+      - python-six
+      - python3-gi
+
+apps:
+  shutdown-helper:
+    command: bin/shutdown-helper
